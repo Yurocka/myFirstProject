@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ClickManager : MonoBehaviour
 {
     // void - функция
-    // int/float - любые числа
+    // int/float - любые числа/дробные числа
     // string - любой текст
     // bool - да/нет
 
