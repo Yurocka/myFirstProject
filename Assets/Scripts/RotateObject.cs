@@ -12,6 +12,7 @@ public class RotateObject : MonoBehaviour
         // false -> true или true -> false
         isActiveAnim = !isActiveAnim;
         // так же можно isActiveAnim = true; или isActiveAnim = false;
+        
         print("switch");
     }
 
