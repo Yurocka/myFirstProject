@@ -23,7 +23,7 @@ public class RotateObject : MonoBehaviour
         {
             Object.Rotate(0, 0, 3);
 
-            // Object.Translate(Object.forward * speed * Time.deltaTime);
+            Object.Translate(Object.forward * speed * Time.deltaTime);
             // -Object.
             // Object.right
             // -Object.right
