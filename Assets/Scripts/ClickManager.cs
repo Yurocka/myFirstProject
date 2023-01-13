@@ -12,21 +12,45 @@ public class ClickManager : MonoBehaviour
 
     int count = 0;
     int upgrate = 1;
-    string alo = "alo"; 
+    string alo = "alo";
     bool check = false;
     public Text text;
     public Text Lowe;
+    int avto = 0;
 
     void Start()
     {
-        text.text = alo;
-
         print("hello world");
-    }
 
+        count = PlayerPrefs.GetInt("count");
+        if (PlayerPrefs.GetInt("Apgreit") != 0)
+        {
+            upgrate = PlayerPrefs.GetInt("Apgreit");
+        }
+        text.text = count.ToString();
+        Lowe.text = "сила клика " + upgrate.ToString();
+
+        StartCoroutine(TimeFlow());
+    }
+    private IEnumerator TimeFlow()
+    {
+
+        while (true)
+        {
+            count += avto;
+            text.text = count.ToString();
+            yield return new WaitForSeconds(1);
+        }
+    }
+    public void Clack()
+    {
+        avto += 1;
+    }
     public void Click()
     {
         count += upgrate; // count = count + 1;
+
+        PlayerPrefs.SetInt("count", count);
 
         text.text = count.ToString();
 
@@ -35,13 +59,13 @@ public class ClickManager : MonoBehaviour
     public void Upgrate()
     {
         upgrate += 1;
-
-        if(count == 10)
+        PlayerPrefs.SetInt("Apgreit", upgrate);
+        if (count == 10)
         {
             // если count равен 10 то выполняется то что внутри
             print("count равен 10!!!");
         }
-        else if(count > 10)
+        else if (count > 10)
         {
             // если вверхнее условие не сработало проверятеся это
             print("count больше 10!!!");
@@ -51,6 +75,17 @@ public class ClickManager : MonoBehaviour
             print("count меньше 10!!!");
         }
 
-        Lowe.text = upgrate.ToString();
+        Lowe.text = "сила клика " + upgrate.ToString();
+    }
+    public void DeleteData()
+    {
+        PlayerPrefs.DeleteAll();
+        count = 0;
+        upgrate = 1;
+        avto = 0;
+        text.text = count.ToString();
+
+        Lowe.text = "сила клика " + upgrate.ToString();
+
     }
 }

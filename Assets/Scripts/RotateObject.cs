@@ -5,9 +5,14 @@ using UnityEngine;
 public class RotateObject : MonoBehaviour
 {
     bool isActiveAnim; //всегда изначально false
-    float speed = 0.5f;
+    float speed = 100;
     public Transform Object;
+    Vector2 startPos;
 
+    void Start()
+    {
+        startPos = Object.position;
+    }
     public void Click()
     {
         // false -> true или true -> false
@@ -15,24 +20,26 @@ public class RotateObject : MonoBehaviour
         // так же можно isActiveAnim = true; или isActiveAnim = false;
 
         print("switch");
+
+        Object.position = startPos;
     }
 
     private void FixedUpdate()
     {
-        if(isActiveAnim == true)
-        {
-            Object.Rotate(0, 0, 3);
+        Object.Translate(new Vector2(5, 5) * speed * Time.deltaTime);
+        //     if(isActiveAnim == true)
+        //     {
+        //     Object.Rotate(5, 5, 0);
 
-            Object.Translate(Object.forward * speed * Time.deltaTime);
-            // -Object.
-            // Object.right
-            // -Object.right
-            // Object.forward
-            // -Object.forward
+        // Object.Translate(-Object.up * speed * Time.deltaTime);
+        // -Object.
+        // Object.right
+        // -Object.right
+        // Object.forward
+        // -Object.forward
+        // Object.Translate(Object.right * speed * Time.deltaTime);
 
-            // rjfhsjfhksjfjsfjkshfkshfk
-
-            // x y z
-        }
+        // x y z
+        // }
     }
 }
