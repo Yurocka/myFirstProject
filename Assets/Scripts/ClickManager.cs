@@ -10,24 +10,37 @@ public class ClickManager : MonoBehaviour
     // string - любой текст
     // bool - да/нет
 
-    int count = 0;
+    int countClick = 0;
     int upgrate = 1;
-    string alo = "alo";
-    bool check = false;
+    string lalala = "alo";
+    bool check;
     public Text text;
     public Text Lowe;
     int avto = 0;
 
+
+    int[] array = new int[] { 1, 2, 3, 0 };
+
+
+
     void Start()
     {
-        print("hello world");
 
-        count = PlayerPrefs.GetInt("count");
+        array = new int[] { 10, 100, 1000 };
+        print(array[array.Length - 2]);
+        print("hello world");
+        array[1] = 69;
+        for (int i = 0; i < array.Length; i++)
+        {
+            print(array[i]);
+        }
+
+        countClick = PlayerPrefs.GetInt("count");
         if (PlayerPrefs.GetInt("Apgreit") != 0)
         {
             upgrate = PlayerPrefs.GetInt("Apgreit");
         }
-        text.text = count.ToString();
+        text.text = countClick.ToString();
         Lowe.text = "сила клика " + upgrate.ToString();
 
         StartCoroutine(TimeFlow());
@@ -37,8 +50,8 @@ public class ClickManager : MonoBehaviour
 
         while (true)
         {
-            count += avto;
-            text.text = count.ToString();
+            countClick += avto;
+            text.text = countClick.ToString();
             yield return new WaitForSeconds(1);
         }
     }
@@ -48,24 +61,24 @@ public class ClickManager : MonoBehaviour
     }
     public void Click()
     {
-        count += upgrate; // count = count + 1;
+        countClick += upgrate; // count = count + 1;
 
-        PlayerPrefs.SetInt("count", count);
+        PlayerPrefs.SetInt("count", countClick);
 
-        text.text = count.ToString();
+        text.text = countClick.ToString();
 
-        print(count);
+        print(countClick);
     }
     public void Upgrate()
     {
         upgrate += 1;
         PlayerPrefs.SetInt("Apgreit", upgrate);
-        if (count == 10)
+        if (countClick == 10)
         {
             // если count равен 10 то выполняется то что внутри
             print("count равен 10!!!");
         }
-        else if (count > 10)
+        else if (countClick > 10)
         {
             // если вверхнее условие не сработало проверятеся это
             print("count больше 10!!!");
@@ -80,10 +93,10 @@ public class ClickManager : MonoBehaviour
     public void DeleteData()
     {
         PlayerPrefs.DeleteAll();
-        count = 0;
+        countClick = 0;
         upgrate = 1;
         avto = 0;
-        text.text = count.ToString();
+        text.text = countClick.ToString();
 
         Lowe.text = "сила клика " + upgrate.ToString();
 
